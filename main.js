@@ -23,7 +23,7 @@ app.on('ready', () => {
         height: 768
     }
 
-    const urlLocation = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
+    const urlLocation = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, './index.html')}`
 
     // 重写 BrowserWindow
     mainWindow = new AppWindow(mainWindowConfig, urlLocation)
