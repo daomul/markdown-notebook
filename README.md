@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `yarn install`
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
@@ -37,32 +39,28 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `yarn pack`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Only generates the package directory without really packaging it. This is useful for testing purposes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+See the section about [quick-setup-guide](https://www.electron.build/index.html#quick-setup-guide) for more information.
 
-### Code Splitting
+### `yarn dist`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+To package in a distributable format (e.g. dmg, windows installer, deb package)
 
-### Analyzing the Bundle Size
+### `yarn release`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Release will be drafted (if doesn’t already exist) and artifacts published only if tag was pushed.
 
-### Making a Progressive Web App
+If npm script named release, — always.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+If you run yarn release, a release will be drafted (if doesn’t already exist) and artifacts published.
 
-### Advanced Configuration
+See the section about [how-to-publish](https://www.electron.build/configuration/publish.html#how-to-publish) for more information.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### `GitHub options`
 
-### Deployment
+GitHub personal access token is required. You can generate by going to https://github.com/settings/tokens/new
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+See the section about [githuboptions](https://www.electron.build/configuration/publish.html#githuboptions) for more information.

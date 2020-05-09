@@ -1,6 +1,6 @@
 {
   "name": "mdnotebook",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "main.js",
   "private": true,
   "description": "markdown notebook",
@@ -23,7 +23,10 @@
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "prepack": "npm run build && npm run buildMain"
+    "release": "cross-env GH_TOKEN=45c35dff2a5a371af1baf875694e06ca5a9082fc electron-builder",
+    "prepack": "npm run build && npm run buildMain",
+    "predist": "npm run build && npm run buildMain",
+    "prerelease": "npm run build && npm run buildMain"
   },
   "homepage": "./",
   "build": {
