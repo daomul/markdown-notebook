@@ -1,6 +1,6 @@
 {
   "name": "mdnotebook",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "main": "main.js",
   "private": true,
   "description": "markdown notebook",
@@ -117,6 +117,7 @@
     "electron": "8.2.3",
     "electron-builder": "22.5.1",
     "electron-is-dev": "^1.2.0",
+    "electron-updater": "^4.3.1",
     "node-sass": "^4.14.0",
     "nodemon": "^2.0.3",
     "qiniu": "^7.3.0",

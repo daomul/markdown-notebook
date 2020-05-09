@@ -2,6 +2,7 @@ const { app, Menu, dialog, ipcMain } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 const Store = require('electron-store')
+const { autoUpdater } = require('electron-updater')
 const menuTemplate = require('./src/utils/menuTemplate')
 const AppWindow = require('./src/AppWindow')
 const QiniuManager = require('./src/utils/QiniuManager')
@@ -17,6 +18,55 @@ const createManger = () => {
 }
 
 app.on('ready', () => {
+
+    // auto update
+    if (isDev) {
+        autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml')
+    }
+    autoUpdater.autoDownload = false
+    autoUpdater.checkForUpdates()
+    autoUpdater.on('error', (error) => {
+        console.log(error)
+        dialog.showErrorBox('Error', error === null ? "unknown" : (error.status))
+    })
+    autoUpdater.on('checking-for-update', () => {
+        console.log('checking-for-update')
+    })
+    autoUpdater.on('update-available', () => {
+        dialog.showMessageBox({
+            type: 'info',
+            title: '应用有新版本，',
+            message: `应有有新版本，是否现在更新`,
+            buttons: ['是', '否']
+        }).then((buttonIndex) => {
+            console.log(buttonIndex.response)
+            if (buttonIndex && buttonIndex.response === 0) {
+                autoUpdater.downloadUpdate()
+            }
+        })
+    })
+    autoUpdater.on('update-not-available', () => {
+        dialog.showMessageBox({
+            type: 'info',
+            title: '没有新版本，',
+            message: `当前已经是最新版本`
+        })
+    })
+    autoUpdater.on('download-progress', (progressObj) => {
+        let log_message = `Download speed: ${progressObj.bytesPerSecond}`
+        log_message += ` - Downloaded ${progressObj.percent} %`
+        log_message += ` ( ${progressObj.transferred} / ${progressObj.total} `
+        console.log(log_message)
+    })
+    autoUpdater.on('update-downloaded', () => {
+        dialog.showMessageBox({
+            type: 'info',
+            title: '安装更新',
+            message: `更新完毕，即将重启`
+        }).then( () => {
+            setImmediate(() => { autoUpdater.quitAndInstall() })
+        })
+    })
 
     const mainWindowConfig = {
         width: 1440,
